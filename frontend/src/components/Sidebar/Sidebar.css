@@ -1,0 +1,174 @@
+.sidebar{
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f0f4f9;
+    padding: 25px 15px;
+    transition: all 0.3s ease;
+    width: 70px;
+}
+
+.sidebar.extended {
+    width: 260px;
+}
+
+.sidebar img{
+    width: 20px;
+}
+
+.sidebar .menu{
+    display: block;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sidebar .menu:hover {
+    transform: rotate(180deg);
+}
+
+.sidebar .new-chat{
+    margin-top: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: #e6eaf1;
+    border-radius: 50px;
+    font-size: 14px;
+    color: grey;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar .new-chat:hover {
+    background-color: #d5dbe6;
+    transform: translateY(-2px);
+}
+
+.sidebar .recent{
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.sidebar .recent-title{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #555;
+}
+
+.sidebar .recent-entry{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 50px;
+    color: #282828;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar .recent-entry:hover{
+    background-color: #e2e6eb;
+}
+
+.sidebar .recent-entry.active {
+    background-color: #dae5f5;
+    font-weight: bold;
+}
+
+.sidebar .bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sidebar .bottom-item{
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar .bottom-item:hover {
+    background-color: #e2e6eb;
+}
+
+.sidebar .chat-actions {
+    display: none;
+    position: absolute;
+    right: 10px;
+    gap: 8px;
+}
+
+.sidebar .recent-entry:hover .chat-actions {
+    display: flex;
+}
+
+.sidebar .action-icon {
+    padding: 4px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: background-color 0.2s ease;
+}
+
+.sidebar .action-icon:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.sidebar .edit-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    outline: none;
+    font-size: 14px;
+    padding: 2px 0;
+}
+
+.sidebar .empty-state {
+    text-align: center;
+    color: #888;
+    padding: 20px 0;
+    font-style: italic;
+}
+
+/* Dark mode styles */
+.dark-mode .sidebar {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+.dark-mode .sidebar .new-chat {
+    background-color: #374151;
+    color: #e5e7eb;
+}
+
+.dark-mode .sidebar .new-chat:hover {
+    background-color: #4b5563;
+}
+
+.dark-mode .sidebar .recent-entry {
+    color: #e5e7eb;
+}
+
+.dark-mode .sidebar .recent-entry:hover {
+    background-color: #374151;
+}
+
+.dark-mode .sidebar .recent-entry.active {
+    background-color: #3b82f6;
+}
+
+.dark-mode .sidebar .action-icon {
+    background-color: rgba(75, 85, 99, 0.7);
+}
+
+.dark-mode .sidebar .action-icon:hover {
+    background-color: rgba(75, 85, 99, 1);
+}

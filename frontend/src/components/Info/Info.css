@@ -1,0 +1,100 @@
+.university-info-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .dark-mode .university-info-container {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .university-info-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #3a86ff;
+    padding-bottom: 1rem;
+  }
+  
+  .university-info-header h1 {
+    color: #3a86ff;
+    font-size: 2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .dark-mode .university-info-header h1 {
+    color: #5e9eff;
+  }
+  
+  .university-info-section {
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  .university-info-section h2 {
+    color: #3a86ff;
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+    border-left: 4px solid #3a86ff;
+    padding-left: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .dark-mode .university-info-section h2 {
+    color: #5e9eff;
+    border-left-color: #5e9eff;
+  }
+  
+  .university-info-section p {
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  .university-info-section a {
+    color: #3a86ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .university-info-section a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+  
+  .dark-mode .university-info-section a {
+    color: #5e9eff;
+  }
+  
+  .dark-mode .university-info-section a:hover {
+    color: #82b1ff;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .university-info-container {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+    
+    .university-info-header h1 {
+      font-size: 1.5rem;
+    }
+    
+    .university-info-section h2 {
+      font-size: 1.2rem;
+    }
+  }

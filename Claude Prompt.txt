@@ -1,0 +1,150 @@
+I want to make a University chatbot by using Gemini API(Which is written in Python), Flask and React + VITE
+
+Here is the Python Code for the Gemini API. Create a flask app using by this :-
+
+import os
+import google.generativeai as genai
+from dotenv import load_dotenv
+
+class GeminiClient:
+    def __init__(self):
+        load_dotenv()
+        genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+        
+        # Load text files for university information
+        self.chancellor_info = self._load_file_content('bot_api/data/cm.txt')
+        self.vice_chancellor_info = self._load_file_content('bot_api/data/vc.txt')
+        self.registrar_info = self._load_file_content('bot_api/data/rm.txt')
+        
+        # Create the model
+        generation_config = {
+            "temperature": 1,
+            "top_p": 0.95,
+            "top_k": 40,
+            "max_output_tokens": 8192,
+            "response_mime_type": "text/plain",
+        }
+        
+        system_instruction = f"""
+        You are an AI assistant for Scope Global Skills University (SGSU), Bhopal, Madhya Pradesh.
+        Your job is to provide clear, professional, and helpful answers to students, faculty, and prospective students.
+        Always answer based on university policies, university information, admission criteria, course details,
+        contact details(in numbers as well(+91-7552432903, info@sgsuniversity.ac.in)), 
+        
+        Here is information about the Chancellor (Dr. Siddharth Chaturvedi):
+        {self.chancellor_info}
+        
+        Here is information about the Vice Chancellor (Dr. Vijay Singh):
+        {self.vice_chancellor_info}
+        
+        Here is information about the Registrar (Dr. Sitesh Kumar Sinha):
+        {self.registrar_info}
+        
+        If you don't know something, politely suggest contacting the university administration.
+        """
+        
+        self.model = genai.GenerativeModel(
+            model_name="gemini-2.0-flash",
+            generation_config=generation_config,
+            system_instruction=system_instruction
+        )
+        
+        self.history = []
+    
+    def _load_file_content(self, file_path):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                return file.read()
+        except FileNotFoundError:
+            return f"Information file not found: {file_path}"
+    
+    def get_response(self, user_message):
+        try:
+            chat_session = self.model.start_chat(history=self.history)
+            response = chat_session.send_message(user_message)
+            model_response = response.text
+            
+            # Update history
+            self.history.append({"role": "user", "parts": [user_message]})
+            self.history.append({"role": "model", "parts": [model_response]})
+            
+            # Keep history to a reasonable size
+            if len(self.history) > 20:
+                self.history = self.history[-20:]
+                
+            return {"response": model_response}
+        except Exception as e:
+            return {"error": str(e)}
+    
+    def clear_history(self):
+        self.history = []
+        return {"status": "History cleared"}
+
+And I want to integrate it with my React + VITE  App and here are the code for this :-
+
+This is the App.jsx file 
+
+import { useState, useEffect } from 'react'
+import Sidebar from './components/Sidebar/Sidebar'
+import axios from "axios"
+import Main from './components/Main/Main'
+
+
+function App() {
+  const [count, setCount] = useState(0)
+  const [array, setArray] = useState([])
+
+  const fetchAPI = async () => {
+    const response = await axios.get("http://127.0.0.1:5000")
+    setArray(response.data.users);
+  }
+
+  useEffect(() => {
+    fetchAPI()
+  }, [])
+
+  return (
+    <>
+      <Sidebar/>
+      <Main/>
+    </>
+  )
+}
+
+export default App
+
+
+This is the index.html :-
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image" href="/sgsu.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SGSU Bot</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+This is the index.css file :-
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Outfit;
+}
+
+#root{
+  min-height: 100vh;
+  display: flex;
+}
+
+This is the Sidebar.jsx (basically this is my ;

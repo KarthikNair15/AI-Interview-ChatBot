@@ -1,0 +1,177 @@
+.activity-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .dark-mode .activity-container {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .activity-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #3a86ff;
+    padding-bottom: 1rem;
+  }
+  
+  .activity-header h1 {
+    color: #3a86ff;
+    font-size: 2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .dark-mode .activity-header h1 {
+    color: #5e9eff;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 3rem 0;
+    color: #666;
+    font-size: 1.2rem;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  .dark-mode .empty-state {
+    color: #aaa;
+  }
+  
+  .activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  
+  .activity-item {
+    background-color: #f5f7f9;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "time delete"
+      "query query"
+      "response response";
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    animation: slideIn 0.5s ease-in-out;
+    position: relative;
+  }
+  
+  .dark-mode .activity-item {
+    background-color: #3a3a3a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .activity-time {
+    grid-area: time;
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 600;
+  }
+  
+  .dark-mode .activity-time {
+    color: #aaa;
+  }
+  
+  .activity-query {
+    grid-area: query;
+    font-weight: 600;
+    color: #333;
+    background-color: rgba(58, 134, 255, 0.1);
+    padding: 0.5rem;
+    border-radius: 6px;
+    border-left: 3px solid #3a86ff;
+  }
+  
+  .dark-mode .activity-query {
+    color: #f0f0f0;
+    background-color: rgba(94, 158, 255, 0.2);
+    border-left-color: #5e9eff;
+  }
+  
+  .activity-response {
+    grid-area: response;
+    color: #555;
+    background-color: rgba(240, 240, 240, 0.5);
+    padding: 0.5rem;
+    border-radius: 6px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .dark-mode .activity-response {
+    color: #ddd;
+    background-color: rgba(60, 60, 60, 0.5);
+  }
+  
+  .activity-delete {
+    grid-area: delete;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .activity-delete:hover {
+    opacity: 1;
+    background-color: rgba(244, 67, 54, 0.1);
+  }
+  
+  .activity-delete img {
+    transition: transform 0.3s ease;
+  }
+  
+  .activity-delete:hover img {
+    transform: scale(1.2);
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .activity-container {
+      margin: 1rem;
+      padding: 1rem;
+    }
+    
+    .activity-header h1 {
+      font-size: 1.5rem;
+    }
+    
+    .activity-list {
+      max-height: 60vh;
+    }
+  }
